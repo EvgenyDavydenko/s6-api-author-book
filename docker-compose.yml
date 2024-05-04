@@ -1,0 +1,35 @@
+
+services:
+    php82cli:
+        build: ./
+        container_name: symfony-php82cli-bookworm
+        restart: always
+        ports:
+            - 8080:8000
+        links:
+            - database
+        volumes:
+            - ./:/var/www/html
+        tty: true
+        # symfony server:start
+    database:
+        image: mariadb:11.3.2-jammy
+        container_name: mariadb-jammy
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root_pass
+            MYSQL_DATABASE: symfony
+            MYSQL_USER: phpmyadmin
+            MYSQL_PASSWORD: phpmyadmin
+    phpmyadmin:
+        image: phpmyadmin:5.2.1-apache
+        container_name: phpmyadmin-apache
+        restart: always
+        links:
+            - database
+        ports:
+            - 8084:80
+        environment:
+            PMA_HOST: database
+            PMA_USER: phpmyadmin
+            PMA_PASSWORD: phpmyadmin        
