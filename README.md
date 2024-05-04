@@ -24,3 +24,7 @@ composer require --dev orm-fixtures zenstruck/foundry
 symfony console make:factory
 symfony console doctrine:fixtures:load
 ```
+4.  Creation of the api controller
+```
+symfony console make:controller --no-template BookController\AuthorController
+```
