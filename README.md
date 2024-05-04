@@ -18,3 +18,9 @@ symfony console make:entity Book\Author
 symfony console make:migration
 symfony console doctrine:migrations:migrate
 ```
+3.  Creation of a dataset
+```
+composer require --dev orm-fixtures zenstruck/foundry
+symfony console make:factory
+symfony console doctrine:fixtures:load
+```
